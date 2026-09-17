@@ -173,13 +173,13 @@ The repository is 100% Vercel ready:
    git init
    git add .
    git commit -m "Initial commit of Yawar Abbas SEO Portfolio"
-   git remote add origin https://github.com/<your-username>/yawar-abbas-portfolio.git
+   git remote add origin https://github.com/yawarabbassss/yawar-abbas.git
    git push -u origin main
    ```
 
 2. Log into [Vercel](https://vercel.com).
 3. Click **"Add New"** → **"Project"**.
-4. Import your GitHub repository `yawar-abbas-portfolio`.
+4. Import your GitHub repository `yawar-abbas`.
 5. Select framework preset: **Next.js**.
 6. Click **"Deploy"**. Vercel will automatically build and publish your site with SSL, global CDN distribution, and optimized asset delivery.
 
