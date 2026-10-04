@@ -1,164 +1,156 @@
-"use me";
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { SERVICE_CATEGORIES } from "@/data/services";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SITE_DATA } from "@/data/siteData";
-import {
-  Compass,
-  Cpu,
-  FileText,
-  Award,
-  Sparkles,
-  Layout,
-  ArrowUpRight,
-  CheckCircle2,
-  Zap,
-  Star
-} from "lucide-react";
+import { Compass, Cpu, FileText, Award, Sparkles, Layout, ArrowUpRight } from "lucide-react";
 
 export const ServicesSection: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>(SERVICE_CATEGORIES[0].id);
-
-  const getCategoryIcon = (iconName: string) => {
-    switch (iconName) {
-      case "Compass": return <Compass className="w-5 h-5" />;
-      case "Cpu": return <Cpu className="w-5 h-5" />;
-      case "FileText": return <FileText className="w-5 h-5" />;
-      case "Award": return <Award className="w-5 h-5" />;
-      case "Sparkles": return <Sparkles className="w-5 h-5" />;
-      case "Layout": return <Layout className="w-5 h-5" />;
-      default: return <Zap className="w-5 h-5" />;
-    }
+  const iconMap: Record<string, React.ElementType> = {
+    Compass,
+    Cpu,
+    FileText,
+    Award,
+    Sparkles,
+    Layout,
   };
 
   return (
-    <section id="services" className="py-20 lg:py-28 bg-white text-gray-900 border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-24 sm:py-32 bg-[#0B0C16] text-white relative overflow-hidden border-t border-white/10">
+      {/* Background Animated Glows */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.1, 0.2, 0.1],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/3 left-10 w-96 h-96 bg-indigo-600/20 rounded-full blur-[140px] pointer-events-none"
+      />
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.1, 0.25, 0.1],
+        }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-[140px] pointer-events-none"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <ScrollReveal className="flex flex-col items-start max-w-3xl mb-12">
-          <Badge variant="mint" className="mb-4">
-            Specialized SEO & Growth Capabilities
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-brand-deep tracking-tight">
-            Strategic SEO Solutions Built for Business Impact
-          </h2>
-          <p className="mt-3 text-base text-gray-600 font-light">
-            Comprehensive search engine optimization services engineered to generate high-intent pipeline, establish topical dominance, and future-proof AI search visibility.
-          </p>
-        </ScrollReveal>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+              What I Do
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+              What I build for you
+            </h2>
+          </motion.div>
 
-        {/* Category Tabs Filter Bar */}
-        <ScrollReveal delay={0.1} className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar border-b border-gray-100">
-          {SERVICE_CATEGORIES.map((cat) => {
-            const isActive = cat.id === activeCategory;
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="text-sm sm:text-base text-gray-400 max-w-md font-light leading-relaxed"
+          >
+            From the first technical audit to the qualified leads that convert in your pipeline — one growth specialist who drives the entire organic engine.
+          </motion.p>
+        </div>
+
+        {/* Bento Grid Layout with Staggered Entrance & Hover Animations */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SERVICE_CATEGORIES.slice(0, 4).map((cat, idx) => {
+            const Icon = iconMap[cat.iconName] || Sparkles;
+            const number = `0${idx + 1}`;
+
             return (
-              <button
+              <motion.div
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-300 ${
-                  isActive
-                    ? "bg-brand-deep text-white shadow-md border border-brand-deep"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200/70 border border-transparent"
-                }`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ y: -8, transition: { duration: 0.25 } }}
+                className="group relative p-6 sm:p-8 rounded-3xl bg-[#121424] hover:bg-[#16192E] border border-white/10 hover:border-indigo-500/60 transition-colors duration-300 flex flex-col justify-between shadow-xl hover:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.35)]"
               >
-                <span className={isActive ? "text-brand-emerald" : "text-gray-500"}>
-                  {getCategoryIcon(cat.iconName)}
-                </span>
-                <span>{cat.title}</span>
-              </button>
+                <div>
+                  {/* Top Row: Icon & Step Number */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className="text-2xl font-heading font-black text-white/20 group-hover:text-indigo-400/50 group-hover:scale-110 transition-all duration-300">
+                      {number}
+                    </span>
+                  </div>
+
+                  {/* Title & Description */}
+                  <h3 className="text-xl font-bold font-heading text-white mb-3 group-hover:text-indigo-300 transition-colors">
+                    {cat.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed mb-6">
+                    {cat.description}
+                  </p>
+                </div>
+
+                {/* Sub-services / Feature Chips */}
+                <div>
+                  <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2">
+                    {cat.services.map((srv) => (
+                      <span
+                        key={srv.id}
+                        className="px-2.5 py-1 rounded-lg bg-white/5 text-[11px] font-medium text-gray-300 border border-white/5 group-hover:border-indigo-500/30 group-hover:text-white transition-colors"
+                      >
+                        {srv.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             );
           })}
-        </ScrollReveal>
+        </div>
 
-        {/* Active Category Services Grid */}
-        {SERVICE_CATEGORIES.filter((cat) => cat.id === activeCategory).map((currentCat) => (
-          <ScrollReveal key={currentCat.id} delay={0.15} className="animate-in fade-in-50 duration-300">
-            
-            {/* Category Description Bar */}
-            <div className="mb-8 p-4 rounded-xl bg-brand-mint/30 border border-brand-emerald/20 flex items-center justify-between">
-              <p className="text-sm font-medium text-brand-deep">
-                {currentCat.description}
+        {/* Bottom Additional Value Banner with Scroll Entrance */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-900/30 via-[#121424] to-purple-900/20 border border-indigo-500/30 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shrink-0 shadow-md">
+              <Sparkles className="w-5 h-5 animate-pulse" />
+            </div>
+            <div>
+              <h4 className="font-heading font-bold text-base text-white">
+                Next-Gen Generative Engine Optimization (GEO)
+              </h4>
+              <p className="text-xs text-gray-400">
+                Optimized for ChatGPT, Google AI Overviews, Perplexity, and LLM search discovery.
               </p>
-              <span className="text-xs font-semibold text-brand-emerald uppercase tracking-wider hidden sm:inline-block">
-                {currentCat.services.length} Specialized Offerings
-              </span>
             </div>
-
-            {/* Services Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentCat.services.map((service) => (
-                <Card
-                  key={service.id}
-                  bg="white"
-                  className="flex flex-col justify-between border border-gray-200/90 hover:border-brand-emerald/50 hover:shadow-lg transition-all duration-300 group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-brand-mint/50 text-brand-deep group-hover:bg-brand-emerald group-hover:text-brand-deep flex items-center justify-center transition-colors">
-                        <Zap className="w-5 h-5" />
-                      </div>
-                      {service.highlighted && (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-deep bg-brand-mint px-2.5 py-0.5 rounded-full border border-brand-emerald/30">
-                          <Star className="w-3 h-3 text-brand-emerald fill-brand-emerald" /> High Demand
-                        </span>
-                      )}
-                    </div>
-
-                    <h3 className="text-lg font-bold text-brand-deep font-heading mb-2.5 group-hover:text-brand-emerald transition-colors">
-                      {service.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-light">
-                      {service.shortDesc}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-xs font-medium text-gray-500 flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-brand-emerald" /> Strategic Focus
-                    </span>
-                    <a
-                      href={SITE_DATA.urls.calendly}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-bold text-brand-deep group-hover:text-brand-emerald flex items-center gap-1 transition-colors"
-                    >
-                      <span>Discuss Scope</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </Card>
-              ))}
-            </div>
-
-          </ScrollReveal>
-        ))}
-
-        {/* CTA Bar below Services */}
-        <ScrollReveal delay={0.2} className="mt-16 text-center p-8 rounded-2xl bg-brand-light border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="text-left max-w-xl">
-            <h3 className="text-xl font-bold text-brand-deep font-heading">
-              Need a custom SEO audit or growth roadmap?
-            </h3>
-            <p className="text-sm text-gray-600 mt-1">
-              Let's analyze your current search footprint and structure a clear plan for sustainable organic revenue.
-            </p>
           </div>
-          <Button
-            href={SITE_DATA.urls.calendly}
-            external
-            variant="primary"
-            size="md"
-            icon={<ArrowUpRight className="w-4 h-4" />}
+
+          <motion.a
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.98 }}
+            href="#contact"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shrink-0"
           >
-            Book an SEO Growth Call
-          </Button>
-        </ScrollReveal>
+            <span>Request Full Growth Plan</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </motion.a>
+        </motion.div>
 
       </div>
     </section>

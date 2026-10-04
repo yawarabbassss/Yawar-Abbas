@@ -1,130 +1,115 @@
-"use me";
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { EXPERIENCES } from "@/data/experience";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { MapPin, ChevronRight, CheckCircle2 } from "lucide-react";
+import { Calendar, MapPin, CheckCircle2 } from "lucide-react";
 
 export const ExperienceSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>(EXPERIENCES[0].id);
-
   return (
-    <section id="experience" className="py-20 lg:py-28 bg-brand-light text-gray-900 border-b border-gray-200/60">
+    <section id="experience" className="py-24 sm:py-32 bg-white text-gray-900 border-b border-gray-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <ScrollReveal className="flex flex-col items-start max-w-3xl mb-16">
-          <Badge variant="mint" className="mb-4">
-            Track Record & Professional Experience
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-brand-deep tracking-tight">
-            Hands-on SEO Execution & Growth Leadership
-          </h2>
-          <p className="mt-3 text-base text-gray-600 font-light">
-            Factual history of growth strategy and search optimization roles across organizations, applications, and regional initiatives.
-          </p>
-        </ScrollReveal>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse" />
+              Career
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-gray-950 tracking-tight">
+              Work experience
+            </h2>
+          </motion.div>
 
-        {/* Experience Timeline Grid */}
-        <ScrollReveal delay={0.1} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* Left Column: Interactive Role Selector List */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
-            {EXPERIENCES.map((exp) => {
-              const isActive = exp.id === activeTab;
-              return (
-                <button
-                  key={exp.id}
-                  onClick={() => setActiveTab(exp.id)}
-                  className={`text-left p-5 rounded-xl transition-all duration-300 border ${
-                    isActive
-                      ? "bg-brand-deep text-white border-brand-deep shadow-md transform translate-x-1"
-                      : "bg-white text-gray-800 border-gray-200/80 hover:border-brand-emerald/40 hover:bg-gray-50"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className={`text-xs font-semibold uppercase tracking-wider ${isActive ? "text-brand-emerald" : "text-brand-deep/70"}`}>
-                      {exp.type}
-                    </span>
-                    <ChevronRight className={`w-4 h-4 ${isActive ? "text-brand-emerald" : "text-gray-400"}`} />
-                  </div>
-                  <h3 className="text-lg font-bold font-heading mt-1">
-                    {exp.role}
-                  </h3>
-                  <div className={`text-sm ${isActive ? "text-emerald-100" : "text-gray-600"}`}>
-                    {exp.company}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="text-sm sm:text-base text-gray-600 max-w-md font-light leading-relaxed"
+          >
+            Where I've built organic growth systems, directed search strategy, and scaled digital reach across international and regional markets.
+          </motion.p>
+        </div>
 
-          {/* Right Column: Detailed Role Content Card */}
-          <div className="lg:col-span-8">
-            {EXPERIENCES.filter((exp) => exp.id === activeTab).map((activeExp) => (
-              <Card
-                key={activeExp.id}
-                bg="white"
-                className="shadow-md border border-gray-200 animate-in fade-in-50 duration-300"
-              >
-                {/* Role Header */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-gray-100">
-                  <div>
-                    <span className="text-xs uppercase font-bold tracking-widest text-brand-emerald bg-brand-mint/60 px-3 py-1 rounded-full border border-brand-emerald/20">
-                      {activeExp.type}
-                    </span>
-                    <h3 className="text-2xl font-extrabold text-brand-deep font-heading mt-3">
-                      {activeExp.role} <span className="text-brand-emerald">@ {activeExp.company}</span>
-                    </h3>
-                  </div>
-
-                  {activeExp.location && (
-                    <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
-                      <MapPin className="w-3.5 h-3.5 text-brand-deep" />
-                      <span>{activeExp.location}</span>
-                    </div>
-                  )}
+        {/* Split Timeline List with Scroll Triggers */}
+        <div className="space-y-12 relative">
+          {EXPERIENCES.map((exp, idx) => (
+            <motion.div
+              key={exp.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-70px" }}
+              transition={{ duration: 0.6, delay: idx * 0.12 }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start p-6 sm:p-10 rounded-3xl bg-[#FAFAFC] border border-gray-200/80 hover:border-indigo-500/40 hover:shadow-xl transition-all duration-300"
+            >
+              {/* Left Column: Company & Dates */}
+              <div className="lg:col-span-4 space-y-3">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-100/80 text-indigo-900 text-xs font-bold">
+                  <Calendar className="w-3.5 h-3.5 text-indigo-600" />
+                  <span>2024 — Present</span>
                 </div>
 
-                {/* Role Overview */}
-                <p className="mt-6 text-sm text-gray-700 leading-relaxed font-light">
-                  {activeExp.description}
+                <h3 className="text-2xl sm:text-3xl font-heading font-black text-gray-950 tracking-tight">
+                  {exp.company}
+                </h3>
+
+                {exp.location && (
+                  <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                    <MapPin className="w-3.5 h-3.5 text-indigo-600" />
+                    <span>{exp.location}</span>
+                  </div>
+                )}
+
+                {exp.type && (
+                  <div className="inline-block text-xs font-semibold px-3 py-1 rounded-xl bg-gray-200/70 text-gray-700">
+                    {exp.type}
+                  </div>
+                )}
+              </div>
+
+              {/* Right Column: Role & Key Contributions */}
+              <div className="lg:col-span-8 space-y-4">
+                <h4 className="text-xl sm:text-2xl font-heading font-bold text-indigo-900">
+                  {exp.role}
+                </h4>
+
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {exp.description}
                 </p>
 
                 {/* Key Responsibilities */}
-                <div className="mt-6">
-                  <h4 className="text-xs uppercase tracking-wider font-bold text-brand-deep mb-3">
-                    Key Focus Areas & Impact
-                  </h4>
-                  <ul className="space-y-3">
-                    {activeExp.keyResponsibilities.map((resp, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-sm text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 text-brand-emerald mt-0.5 shrink-0" />
-                        <span>{resp}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="space-y-2.5 pt-2">
+                  {exp.keyResponsibilities.map((resp, rIdx) => (
+                    <div key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-700">
+                      <CheckCircle2 className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
+                      <span>{resp}</span>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Skills/Tags */}
-                <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap items-center gap-2">
-                  {activeExp.tags.map((tag) => (
+                {/* Tags Chips */}
+                <div className="pt-4 border-t border-gray-200 flex flex-wrap gap-2">
+                  {exp.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-medium bg-gray-100 text-brand-deep px-3 py-1 rounded-md border border-gray-200"
+                      className="px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-xs font-semibold text-gray-700 hover:border-indigo-400 transition-colors"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-              </Card>
-            ))}
-          </div>
-
-        </ScrollReveal>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
       </div>
     </section>

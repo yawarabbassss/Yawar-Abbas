@@ -1,43 +1,44 @@
-"use me";
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SITE_DATA } from "@/data/siteData";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import {
-  ArrowUpRight,
   Mail,
+  Copy,
+  Check,
   Linkedin,
   Instagram,
   Facebook,
   MapPin,
   Send,
+  Loader2,
   CheckCircle2,
-  Calendar,
-  Sparkles,
-  Newspaper,
-  Loader2
+  ArrowUpRight
 } from "lucide-react";
 
 export const ContactSection: React.FC = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
+    subject: "",
     message: "",
   });
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(SITE_DATA.personal.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Send form response directly to yaawarabbass@gmail.com via FormSubmit AJAX service
       const res = await fetch("https://formsubmit.co/ajax/yaawarabbass@gmail.com", {
         method: "POST",
         headers: {
@@ -47,19 +48,25 @@ export const ContactSection: React.FC = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          company: formData.company || "N/A",
+          subject: formData.subject || "New SEO Strategy Inquiry",
           message: formData.message,
-          _subject: `New SEO Growth Inquiry from ${formData.name}`,
+          _subject: `New SEO Inquiry from ${formData.name}`,
         }),
       });
 
       if (!res.ok) {
-        // Mailto fallback
-        window.location.href = `mailto:${SITE_DATA.personal.email}?subject=SEO Inquiry from ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0D%0AEmail: ${encodeURIComponent(formData.email)}%0D%0ACompany: ${encodeURIComponent(formData.company)}%0D%0AMessage: ${encodeURIComponent(formData.message)}`;
+        window.location.href = `mailto:${SITE_DATA.personal.email}?subject=${encodeURIComponent(
+          formData.subject || "SEO Strategy Inquiry"
+        )}&body=Name: ${encodeURIComponent(formData.name)}%0D%0AEmail: ${encodeURIComponent(
+          formData.email
+        )}%0D%0AMessage: ${encodeURIComponent(formData.message)}`;
       }
-    } catch (err) {
-      // Direct mailto fallback if fetch fails
-      window.location.href = `mailto:${SITE_DATA.personal.email}?subject=SEO Inquiry from ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0D%0AEmail: ${encodeURIComponent(formData.email)}%0D%0ACompany: ${encodeURIComponent(formData.company)}%0D%0AMessage: ${encodeURIComponent(formData.message)}`;
+    } catch {
+      window.location.href = `mailto:${SITE_DATA.personal.email}?subject=${encodeURIComponent(
+        formData.subject || "SEO Strategy Inquiry"
+      )}&body=Name: ${encodeURIComponent(formData.name)}%0D%0AEmail: ${encodeURIComponent(
+        formData.email
+      )}%0D%0AMessage: ${encodeURIComponent(formData.message)}`;
     } finally {
       setIsSubmitting(false);
       setFormSubmitted(true);
@@ -67,214 +74,185 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-white text-gray-900 border-b border-gray-100">
+    <section id="contact" className="py-24 sm:py-32 bg-[#FAFAFC] text-gray-900 border-b border-gray-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <ScrollReveal className="flex flex-col items-start max-w-3xl mb-12">
-          <Badge variant="mint" className="mb-4">
-            Initiate Consultation
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-brand-deep tracking-tight leading-tight">
-            Let's talk about your growth.
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-gray-600 font-light leading-relaxed">
-            Whether you need a full technical audit, a high-intent keyword strategy, or an end-to-end SEO roadmap to reach revenue targets—let's discuss your specific scope.
-          </p>
-        </ScrollReveal>
-
-        {/* Levelled & Symmetrical Two-Column Layout */}
-        <ScrollReveal delay={0.1} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           
-          {/* Left Column: Booking & Channels */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-            
-            {/* Direct Booking Hero Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-brand-deep text-white border border-brand-emerald/30 shadow-xl flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-brand-emerald text-brand-deep flex items-center justify-center font-bold">
-                    <Calendar className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-semibold text-brand-mint bg-white/10 px-3 py-1 rounded-full border border-white/10">
-                    Fastest Response
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold font-heading text-white">
-                  Book a Strategy Call
-                </h3>
-                <p className="text-xs sm:text-sm text-emerald-100/90 mt-1 mb-6 font-light">
-                  Directly schedule a 1-on-1 growth consultation on Calendly.
-                </p>
-              </div>
-              <Button
-                href={SITE_DATA.urls.calendly}
-                external
-                variant="primary"
-                size="lg"
-                className="w-full"
-                icon={<ArrowUpRight className="w-5 h-5" />}
-              >
-                Book a Strategy Call
-              </Button>
-            </div>
+          {/* Left Column: High Impact Direct Contact Card with Scroll Entrance */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5 flex flex-col"
+          >
+            <div className="relative h-full p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#12142B] via-[#1E2248] to-[#12142B] text-white shadow-2xl border border-indigo-500/20 flex flex-col justify-between overflow-hidden">
+              
+              {/* Background Glow */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.15, 0.3, 0.15],
+                }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-10 -right-10 w-56 h-56 bg-indigo-500/30 rounded-full blur-3xl pointer-events-none"
+              />
 
-            {/* Newsletter Subscription Card */}
-            <div className="p-6 rounded-2xl bg-brand-mint/40 border border-brand-emerald/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-deep">
-                  <Newspaper className="w-4 h-4 text-brand-emerald" />
-                  <span>The Search Visibility Playbook</span>
+                {/* Tag */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-indigo-300 text-[11px] font-bold uppercase tracking-wider mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                  <span>Contact</span>
                 </div>
-                <h4 className="text-base font-bold text-brand-deep font-heading mt-1">
-                  Subscribe to My Newsletter
-                </h4>
-                <p className="text-xs text-gray-600 mt-0.5">
-                  Actionable SEO strategies & organic growth insights on LinkedIn.
-                </p>
-              </div>
-              <Button
-                href={SITE_DATA.urls.newsletter}
-                external
-                variant="secondary"
-                size="sm"
-                className="shrink-0"
-                icon={<ArrowUpRight className="w-4 h-4" />}
-              >
-                Subscribe
-              </Button>
-            </div>
 
-            {/* Email, Location & Socials Card */}
-            <div className="p-6 rounded-2xl bg-gray-50 border border-gray-200/90 space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
-                {/* Direct Email Link */}
-                <a
-                  href={`mailto:${SITE_DATA.personal.email}`}
-                  className="flex items-center gap-3 p-3.5 rounded-xl border border-gray-200 bg-white hover:border-brand-emerald transition-all group"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-brand-mint text-brand-deep flex items-center justify-center font-bold shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[11px] font-semibold text-gray-500 uppercase">Email Directly</div>
-                    <div className="text-xs font-bold text-brand-deep group-hover:text-brand-emerald transition-colors truncate">
+                {/* Main Headline */}
+                <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-white leading-tight mb-4">
+                  Have a project idea? <br />
+                  <span className="text-indigo-400 italic font-serif">Let's talk.</span>
+                </h2>
+
+                <p className="text-xs sm:text-sm text-gray-300 font-light leading-relaxed mb-8">
+                  Whether it's an end-to-end SEO growth roadmap, a technical crawl audit, or a custom Generative Engine Optimization (GEO) blueprint — send a message and I'll get back to you within 24 hours.
+                </p>
+
+                {/* Direct Email with Animated Copy Button */}
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between gap-3 mb-6">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span className="text-xs sm:text-sm font-semibold text-gray-200 truncate">
                       {SITE_DATA.personal.email}
-                    </div>
+                    </span>
                   </div>
-                </a>
 
-                {/* Location Display */}
-                <div className="flex items-center gap-3 p-3.5 rounded-xl border border-gray-200 bg-white">
-                  <div className="w-9 h-9 rounded-lg bg-gray-100 text-brand-deep flex items-center justify-center font-bold shrink-0">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] font-semibold text-gray-500 uppercase">Location</div>
-                    <div className="text-xs font-bold text-brand-deep">
-                      {SITE_DATA.personal.location}
-                    </div>
-                  </div>
+                  <motion.button
+                    whileTap={{ scale: 0.92 }}
+                    onClick={handleCopyEmail}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-colors shrink-0 cursor-pointer"
+                    title="Copy Email"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400">Copied</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copy</span>
+                      </>
+                    )}
+                  </motion.button>
                 </div>
 
-              </div>
-
-              {/* Social Connect Row */}
-              <div className="pt-3 border-t border-gray-200/80 flex items-center justify-between">
-                <span className="text-xs text-gray-500 font-medium">Follow & Connect:</span>
-                <div className="flex items-center gap-2">
-                  <a
+                {/* Social Links Matrix */}
+                <div className="space-y-2">
+                  <motion.a
+                    whileHover={{ x: 4 }}
                     href={SITE_DATA.urls.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-white border border-gray-200 hover:bg-brand-deep hover:text-white text-brand-deep transition-colors"
-                    aria-label="LinkedIn"
+                    className="flex items-center justify-between p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
                   >
-                    <Linkedin className="w-4 h-4" />
-                  </a>
-                  <a
+                    <div className="flex items-center gap-2.5 text-xs font-medium text-gray-300 group-hover:text-white">
+                      <Linkedin className="w-4 h-4 text-indigo-400" />
+                      <span>LinkedIn / yawar-abbass</span>
+                    </div>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </motion.a>
+
+                  <motion.a
+                    whileHover={{ x: 4 }}
                     href={SITE_DATA.urls.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-white border border-gray-200 hover:bg-brand-deep hover:text-white text-brand-deep transition-colors"
-                    aria-label="Instagram"
+                    className="flex items-center justify-between p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
                   >
-                    <Instagram className="w-4 h-4" />
-                  </a>
-                  <a
-                    href={SITE_DATA.urls.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-white border border-gray-200 hover:bg-brand-deep hover:text-white text-brand-deep transition-colors"
-                    aria-label="Facebook"
-                  >
-                    <Facebook className="w-4 h-4" />
-                  </a>
+                    <div className="flex items-center gap-2.5 text-xs font-medium text-gray-300 group-hover:text-white">
+                      <Instagram className="w-4 h-4 text-pink-400" />
+                      <span>Instagram / yawarabbassss</span>
+                    </div>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </motion.a>
                 </div>
               </div>
 
+              {/* Bottom Location */}
+              <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-2 text-xs text-gray-400">
+                <MapPin className="w-4 h-4 text-indigo-400" />
+                <span>{SITE_DATA.personal.location}</span>
+              </div>
+
             </div>
+          </motion.div>
 
-          </div>
-
-          {/* Right Column: Balanced Working Contact Form Card */}
-          <div className="lg:col-span-6 flex flex-col">
-            <Card bg="white" className="border border-gray-200 shadow-xl p-6 sm:p-8 flex flex-col justify-between h-full">
+          {/* Right Column: Clean Contact Form Card with Scroll Entrance */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-7 flex flex-col"
+          >
+            <div className="p-8 sm:p-12 rounded-3xl bg-white border border-gray-200/90 shadow-xl flex flex-col justify-between h-full">
               <div>
-                <h3 className="text-2xl font-bold font-heading text-brand-deep mb-1">
-                  Send a Direct Message
+                <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-gray-950 mb-2">
+                  Send a message
                 </h3>
-                <p className="text-xs text-gray-600 mb-5">
-                  Messages are sent directly to <span className="font-semibold text-brand-deep">yaawarabbass@gmail.com</span>.
+                <p className="text-xs sm:text-sm text-gray-500 mb-8">
+                  Fill in the details below and I'll review your website and growth targets.
                 </p>
 
                 {!formSubmitted ? (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                          Your Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="e.g. Alex Morgan"
+                          className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 text-sm outline-none transition"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="alex@company.com"
+                          className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 text-sm outline-none transition"
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-700 mb-1">
-                        Full Name *
+                      <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                        Subject / Website URL
                       </label>
                       <input
                         type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Sarah Jenkins"
-                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 text-sm outline-none transition"
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        placeholder="e.g. SaaS Organic Growth / https://yoursite.com"
+                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 text-sm outline-none transition"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-700 mb-1">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="sarah@yourbrand.com"
-                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 text-sm outline-none transition"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-700 mb-1">
-                        Company / Website URL
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        placeholder="https://yourbrand.com"
-                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 text-sm outline-none transition"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-700 mb-1">
-                        Project Details & Growth Goals *
+                      <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                        Message & Goals *
                       </label>
                       <textarea
                         required
@@ -282,57 +260,67 @@ export const ContactSection: React.FC = () => {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Tell me about your business, current traffic, and primary SEO objectives..."
-                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 text-sm outline-none transition resize-none"
+                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 text-sm outline-none transition resize-none"
                       />
                     </div>
 
-                    <Button
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       type="submit"
-                      variant="primary"
-                      size="lg"
                       disabled={isSubmitting}
-                      className="w-full mt-2"
-                      icon={isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold shadow-lg shadow-indigo-600/20 transition-all disabled:opacity-50 cursor-pointer"
                     >
-                      {isSubmitting ? "Sending Message..." : "Send Message to Yawar"}
-                    </Button>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send message</span>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </>
+                      )}
+                    </motion.button>
                   </form>
                 ) : (
-                  <div className="py-12 text-center space-y-4">
-                    <div className="w-12 h-12 rounded-full bg-brand-mint text-brand-emerald flex items-center justify-center mx-auto">
-                      <CheckCircle2 className="w-6 h-6 text-brand-deep" />
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="py-12 text-center space-y-4"
+                  >
+                    <div className="w-14 h-14 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto">
+                      <CheckCircle2 className="w-7 h-7" />
                     </div>
-                    <h4 className="text-xl font-bold text-brand-deep font-heading">
-                      Message Sent to Yawar!
+                    <h4 className="text-2xl font-bold text-gray-900 font-heading">
+                      Message Sent Successfully!
                     </h4>
                     <p className="text-sm text-gray-600 max-w-md mx-auto">
-                      Thank you for reaching out, {formData.name}. Your message has been sent directly to <span className="font-semibold text-brand-deep">yaawarabbass@gmail.com</span>. I'll get back to you shortly.
+                      Thank you for reaching out, {formData.name}. Your inquiry has been sent directly to <span className="font-semibold text-gray-900">{SITE_DATA.personal.email}</span>. I'll get back to you promptly.
                     </p>
-                    <Button
+                    <button
                       onClick={() => {
                         setFormSubmitted(false);
-                        setFormData({ name: "", email: "", company: "", message: "" });
+                        setFormData({ name: "", email: "", subject: "", message: "" });
                       }}
-                      variant="outline"
-                      size="sm"
-                      className="mt-4"
+                      className="px-6 py-2.5 rounded-full border border-gray-300 text-xs font-bold text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer"
                     >
                       Send Another Message
-                    </Button>
-                  </div>
+                    </button>
+                  </motion.div>
                 )}
               </div>
 
-              <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-                <span>Response Time: &lt; 24 Hours</span>
-                <span className="flex items-center gap-1 text-brand-emerald font-semibold">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> Direct Delivery
-                </span>
+              {/* Form Bottom Guarantee */}
+              <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400">
+                <span>Direct Delivery &lt; 24h</span>
+                <span className="text-indigo-600 font-semibold">Strict Data Privacy</span>
               </div>
-            </Card>
-          </div>
+            </div>
+          </motion.div>
 
-        </ScrollReveal>
+        </div>
 
       </div>
     </section>

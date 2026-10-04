@@ -1,128 +1,164 @@
-"use me";
 "use client";
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { SITE_DATA } from "@/data/siteData";
-import { Button } from "@/components/ui/Button";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 40);
+
+      const sections = ["hero", "about", "skills", "experience", "projects", "contact"];
+      const scrollPos = window.scrollY + 200;
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-gray-200/80 shadow-xs py-3.5"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Identity / Logo */}
-        <a
-          href="#hero"
-          className="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-brand-emerald rounded-lg p-1"
-        >
-          <div className="w-9 h-9 rounded-full border-2 border-brand-emerald overflow-hidden relative shadow-xs shrink-0 group-hover:scale-105 transition-transform">
-            <Image
-              src={SITE_DATA.personal.avatarUrl}
-              alt="Yawar Abbas"
-              fill
-              sizes="36px"
-              className="object-cover object-top"
-            />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-heading font-bold text-gray-900 text-lg tracking-tight leading-tight group-hover:text-brand-deep transition-colors">
-              {SITE_DATA.personal.name}
-            </span>
-            <span className="text-xs font-medium text-brand-deep/70 tracking-wide">
-              {SITE_DATA.personal.title}
-            </span>
-          </div>
-        </a>
+  const leftNav = [
+    { label: "Home", href: "#hero", id: "hero" },
+    { label: "About", href: "#about", id: "about" },
+    { label: "Skills", href: "#skills", id: "skills" },
+  ];
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
-          {SITE_DATA.navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-deep hover:bg-gray-100/70 rounded-md transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
+  const rightNav = [
+    { label: "Experience", href: "#experience", id: "experience" },
+    { label: "Projects", href: "#projects", id: "projects" },
+    { label: "Contact", href: "#contact", id: "contact" },
+  ];
+
+  return (
+    <header className="fixed top-4 sm:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      {/* Capsule Container */}
+      <div
+        className={`pointer-events-auto flex items-center justify-between gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-full transition-all duration-300 ${
+          scrolled
+            ? "bg-[#0B0C16]/90 backdrop-blur-xl border border-white/15 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.5)] text-white"
+            : "bg-[#0B0C16]/85 backdrop-blur-lg border border-white/10 shadow-xl text-white"
+        }`}
+      >
+        {/* Left Links */}
+        <nav className="hidden md:flex items-center gap-1">
+          {leftNav.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 ${
+                  isActive
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
-        {/* Action CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <Button
-            href={SITE_DATA.urls.calendly}
-            external
-            variant="primary"
-            size="sm"
-            icon={<ArrowUpRight className="w-4 h-4" />}
-          >
-            Book a Strategy Call
-          </Button>
-        </div>
+        {/* Center Pill Logo */}
+        <a
+          href="#hero"
+          className="flex items-center gap-2 px-3 py-1 bg-white/10 hover:bg-white/15 border border-white/10 rounded-full transition-all group"
+        >
+          <div className="w-6 h-6 rounded-full bg-indigo-600 flex items-center justify-center text-[10px] font-bold text-white shadow-xs group-hover:scale-105 transition-transform">
+            YA
+          </div>
+          <span className="font-heading font-bold text-xs sm:text-sm tracking-tight text-white flex items-center gap-1">
+            YAWAR ABBAS
+            <span className="w-1.5 h-1.5 rounded-xs bg-indigo-400" />
+          </span>
+        </a>
 
-        {/* Mobile Hamburger Toggle */}
-        <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-emerald"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        {/* Right Links */}
+        <nav className="hidden md:flex items-center gap-1">
+          {rightNav.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 ${
+                  isActive
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Direct Hire Me CTA on Navbar */}
+        <a
+          href={SITE_DATA.urls.calendly}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white rounded-full text-xs font-bold tracking-wide transition-all shadow-sm hover:shadow-indigo-500/25 ml-1"
+        >
+          <span>Book Call</span>
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </a>
+
+        {/* Mobile Hamburger */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-1.5 rounded-full text-gray-200 hover:text-white hover:bg-white/10"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
+        <div className="pointer-events-auto fixed top-20 left-4 right-4 bg-[#0B0C16]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-5 shadow-2xl md:hidden animate-in fade-in zoom-in-95 duration-200">
           <div className="flex flex-col gap-2">
-            {SITE_DATA.navItems.map((item) => (
+            {[...leftNav, ...rightNav].map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2.5 text-base font-medium text-gray-800 hover:bg-brand-mint/30 hover:text-brand-deep rounded-lg transition-colors"
+                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                  activeSection === item.id
+                    ? "bg-indigo-600 text-white"
+                    : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`}
               >
                 {item.label}
               </a>
             ))}
-            <div className="pt-3 mt-2 border-t border-gray-100 flex flex-col gap-2.5">
-              <Button
+            <div className="pt-3 border-t border-white/10 mt-2 flex flex-col gap-2">
+              <a
                 href={SITE_DATA.urls.calendly}
-                external
-                variant="primary"
-                size="md"
-                className="w-full"
-                icon={<ArrowUpRight className="w-4 h-4" />}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-bold shadow-lg"
               >
-                Book a Strategy Call
-              </Button>
-              <Button
-                href={`mailto:${SITE_DATA.personal.email}`}
-                variant="outline"
-                size="md"
-                className="w-full"
-              >
-                Email Yawar
-              </Button>
+                <span>Book Strategy Call</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>

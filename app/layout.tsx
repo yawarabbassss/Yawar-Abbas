@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SITE_DATA } from "@/data/siteData";
 import { JsonLd } from "@/components/JsonLd";
@@ -10,38 +10,42 @@ const inter = Inter({
   display: "swap",
 });
 
-const outfit = Outfit({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+  style: ["normal", "italic"],
+});
+
 export const viewport: Viewport = {
-  themeColor: "#0F3D2E",
+  themeColor: "#0B0C16",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
-  title: `${SITE_DATA.personal.name} | ${SITE_DATA.personal.title} — Growth Strategy`,
+  title: `${SITE_DATA.personal.name} | ${SITE_DATA.personal.title} — Digital Growth & SEO`,
   description: SITE_DATA.personal.heroHeadline,
   keywords: [
     "Yawar Abbas",
-    "SEO Specialist Pakistan",
     "SEO Specialist",
     "SEO Consultant",
-    "SEO Services",
+    "SEO Specialist Pakistan",
+    "Digital Growth Strategist",
     "Technical SEO",
     "On-Page SEO",
     "Off-Page SEO",
-    "SEO Strategy",
-    "SEO Content Strategy",
-    "AI Search Optimization",
     "Generative Engine Optimization",
     "GEO",
-    "SEO for SaaS",
-    "SEO for Startups",
-    "Punjab Pakistan SEO"
+    "AI Search Optimization",
+    "SaaS SEO",
+    "eCommerce SEO",
   ],
   authors: [{ name: SITE_DATA.personal.name }],
   creator: SITE_DATA.personal.name,
@@ -94,11 +98,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${outfit.variable}`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${plusJakarta.variable} ${playfair.variable}`}>
       <head>
         <JsonLd />
       </head>
-      <body className="font-sans bg-white text-gray-900 selection:bg-brand-mint selection:text-brand-deep">
+      <body className="font-sans bg-[#FAFAFC] text-gray-900 selection:bg-indigo-500 selection:text-white antialiased">
         {children}
       </body>
     </html>
