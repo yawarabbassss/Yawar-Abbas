@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { SITE_DATA } from "@/data/siteData";
 import {
@@ -12,7 +13,8 @@ import {
   Layers,
   ShieldCheck,
   Eye,
-  Star
+  Star,
+  Monitor
 } from "lucide-react";
 
 export const WorkSection: React.FC = () => {
@@ -130,13 +132,13 @@ export const WorkSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Tab 1: Live Built Websites Showcase */}
+        {/* Tab 1: Live Built Websites Showcase with Visual Browser Previews */}
         {tab === "websites" && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
           >
             {SITE_DATA.builtWebsites.map((site, idx) => (
               <motion.div
@@ -146,70 +148,111 @@ export const WorkSection: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                className="p-8 sm:p-10 rounded-3xl bg-white border border-gray-200/90 hover:border-indigo-500/50 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+                className="rounded-3xl bg-white border border-gray-200/90 hover:border-indigo-500/50 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group overflow-hidden"
               >
-                <div>
-                  {/* Top Bar with Badge and Live Link */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs font-bold">
-                      <Globe className="w-3.5 h-3.5" />
-                      <span>{site.badge}</span>
+                {/* Visual Browser Window Frame with Live Website Preview */}
+                <div className="bg-[#0B0C16] border-b border-gray-800 p-3 flex flex-col">
+                  {/* Browser Top Header */}
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                    </div>
+
+                    <div className="px-3 py-1 rounded-full bg-white/10 text-[10px] font-mono text-gray-300 flex items-center gap-1.5 max-w-[200px] truncate">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>https://{site.displayUrl}</span>
                     </div>
 
                     <a
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gray-100 group-hover:bg-indigo-600 text-gray-700 group-hover:text-white text-xs font-bold transition-colors"
+                      className="text-gray-400 hover:text-white"
+                      title="Open website in new tab"
                     >
-                      <span>Visit Live</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
 
-                  {/* Title & Category */}
-                  <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">
-                    {site.category}
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-gray-950 mb-3 group-hover:text-indigo-600 transition-colors">
-                    {site.title}
-                  </h3>
+                  {/* Browser Screen Container */}
+                  <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-slate-900 group-hover:scale-[1.02] transition-transform duration-500">
+                    <img
+                      src={site.previewImage}
+                      alt={`${site.title} Live Website Preview`}
+                      className="w-full h-full object-cover object-top"
+                      loading="lazy"
+                    />
 
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed mb-6">
-                    {site.description}
-                  </p>
-
-                  {/* URL preview pill */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gray-50 border border-gray-200 text-xs font-mono text-gray-600 mb-6">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                    <span>{site.displayUrl}</span>
-                  </div>
-                </div>
-
-                {/* Tags and Action */}
-                <div className="pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex flex-wrap gap-2">
-                    {site.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 rounded-lg bg-gray-100 text-gray-700 text-[11px] font-semibold"
-                      >
-                        {t}
+                    {/* Dark gradient overlay with interactive view button on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
+                      <span className="text-xs font-bold text-white flex items-center gap-1.5 drop-shadow-md">
+                        <Monitor className="w-4 h-4 text-indigo-400" />
+                        <span>Live Production View</span>
                       </span>
-                    ))}
+                      <a
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3.5 py-1.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-lg flex items-center gap-1"
+                      >
+                        <span>Visit Site</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Website Card Details */}
+                <div className="p-6 sm:p-8 flex flex-col justify-between flex-grow">
+                  <div>
+                    {/* Top Bar with Badge */}
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-bold uppercase tracking-wider text-indigo-600">
+                        {site.category}
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 text-[11px] font-bold">
+                        {site.badge}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-heading font-extrabold text-gray-950 mb-2 group-hover:text-indigo-600 transition-colors">
+                      {site.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed mb-6">
+                      {site.description}
+                    </p>
                   </div>
 
-                  <a
-                    href={site.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-800"
-                  >
-                    <span>Launch</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
+                  {/* Tags and Action */}
+                  <div className="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap gap-1.5">
+                      {site.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2.5 py-1 rounded-lg bg-gray-100 text-gray-700 text-[11px] font-semibold"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={site.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800"
+                    >
+                      <span>Launch Site</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
+
               </motion.div>
             ))}
           </motion.div>
