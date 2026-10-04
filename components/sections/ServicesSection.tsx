@@ -3,12 +3,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { SERVICE_CATEGORIES } from "@/data/services";
-import { Compass, Cpu, FileText, Award, Sparkles, Layout, ArrowUpRight } from "lucide-react";
+import { Compass, Wrench, FileText, Award, Sparkles, Layout, ArrowUpRight } from "lucide-react";
 
 export const ServicesSection: React.FC = () => {
   const iconMap: Record<string, React.ElementType> = {
     Compass,
-    Cpu,
+    Wrench,
     FileText,
     Award,
     Sparkles,

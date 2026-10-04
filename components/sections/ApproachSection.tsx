@@ -3,10 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { APPROACH_STEPS } from "@/data/approach";
-import { Target, Search, Cpu, TrendingUp, CheckCircle2, Award, ShieldCheck } from "lucide-react";
+import { Target, Search, Layers, TrendingUp, CheckCircle2, Award, ShieldCheck } from "lucide-react";
 
 export const ApproachSection: React.FC = () => {
-  const icons = [Target, Search, Cpu, TrendingUp];
+  const icons = [Target, Search, Layers, TrendingUp];
 
   return (
     <section id="approach" className="py-24 sm:py-32 bg-white text-gray-900 border-b border-gray-100 relative overflow-hidden">

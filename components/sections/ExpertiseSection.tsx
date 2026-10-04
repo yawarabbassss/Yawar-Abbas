@@ -3,10 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { SKILL_CATEGORIES } from "@/data/expertise";
-import { Sparkles, Check, Cpu, FileText, TrendingUp, BarChart2, Globe } from "lucide-react";
+import { Sparkles, Check, SearchCheck, FileText, TrendingUp, BarChart2, Globe } from "lucide-react";
 
 export const ExpertiseSection: React.FC = () => {
-  const categoryIcons = [Cpu, FileText, Sparkles, TrendingUp, BarChart2, Globe];
+  const categoryIcons = [SearchCheck, FileText, Sparkles, TrendingUp, BarChart2, Globe];
 
   return (
     <section id="skills" className="py-24 sm:py-32 bg-[#FAFAFC] text-gray-900 border-b border-gray-100 relative overflow-hidden">

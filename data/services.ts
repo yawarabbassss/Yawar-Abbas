@@ -38,7 +38,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     id: "technical",
     title: "Technical SEO & Infrastructure",
     description: "Eliminating crawl barriers, fixing indexation issues, and engineering high-speed search foundation for scale.",
-    iconName: "Cpu",
+    iconName: "Wrench",
     services: [
       {
         id: "technical-seo",

@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { Sparkles, TrendingUp, Search, Database, Cpu, Layers, Zap, Globe, BarChart2, ShieldCheck, Target } from "lucide-react";
+import { Sparkles, TrendingUp, Search, Database, Wrench, Layers, Zap, Globe, BarChart2, ShieldCheck, Target } from "lucide-react";
 
 export const TechMarquee: React.FC = () => {
   const items = [
-    { label: "Technical SEO", icon: Cpu },
+    { label: "Technical SEO", icon: Wrench },
     { label: "Google Search Console", icon: BarChart2 },
     { label: "Google Analytics 4", icon: TrendingUp },
     { label: "Ahrefs & SEMrush", icon: Search },
