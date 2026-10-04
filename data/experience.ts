@@ -7,7 +7,9 @@ export const EXPERIENCES: ExperienceItem[] = [
     company: "Himmatkaar",
     location: "Faisalabad, Pakistan",
     type: "Youth Empowerment Organization",
-    description: "Led organic search strategy and digital visibility initiatives for Himmatkaar, a youth empowerment organization based in Faisalabad, Pakistan. Focused on expanding digital touchpoints and reach.",
+    period: "2026",
+    status: "Active / Present",
+    description: "Leading organic search strategy and digital visibility initiatives for Himmatkaar, a youth empowerment organization based in Faisalabad, Pakistan. Focused on expanding digital touchpoints and community reach.",
     keyResponsibilities: [
       "Architected search engine optimization campaigns aligned with social impact goals.",
       "Optimized digital content for regional and national search discovery.",
@@ -22,21 +24,25 @@ export const EXPERIENCES: ExperienceItem[] = [
     company: "Misaq",
     location: "United States (Remote)",
     type: "Matchmaking Application",
-    description: "Executed specialized SEO operations for Misaq, a matchmaking application registered in the United States. Designed acquisition channels for targeted user demographics.",
+    period: "2026",
+    status: "Contract Completed",
+    description: "Executed specialized SEO operations for Misaq, a matchmaking application registered in the United States. Designed acquisition channels for targeted user demographics during the contract term.",
     keyResponsibilities: [
       "Analyzed niche search queries and intent patterns within specialized application verticals.",
       "Enhanced landing page performance and indexation speed across major search engines.",
       "Integrated targeted keyword structures and optimized user onboarding funnels.",
       "Collaborated on mobile-first search optimization and app store discovery synergies."
     ],
-    tags: ["App SEO", "Niche Targeting", "On-Page SEO", "Intent Mapping"]
+    tags: ["App SEO", "Niche Targeting", "On-Page SEO", "Intent Mapping", "Contract Completed"]
   },
   {
     id: "saafify",
     role: "Chief Growth Officer",
     company: "Saafify",
     type: "Growth & Digital Strategy",
-    description: "Oversaw overarching growth strategy, organic distribution, and audience expansion operations at Saafify.",
+    period: "2026",
+    status: "Active / Present",
+    description: "Oversaw overarching growth strategy, organic distribution, and audience expansion operations at Saafify in 2026.",
     keyResponsibilities: [
       "Directed strategic growth roadmaps connecting SEO, content creation, and lead generation.",
       "Evaluated channel analytics to identify high-converting organic acquisition opportunities.",
@@ -50,6 +56,8 @@ export const EXPERIENCES: ExperienceItem[] = [
     role: "Growth Strategist",
     company: "Azm Pakistan",
     type: "Digital Initiative",
+    period: "2026",
+    status: "Active / Present",
     description: "Formulated growth campaigns and organic search strategy for Azm Pakistan, driving strategic engagement and brand recognition.",
     keyResponsibilities: [
       "Formulated search and content strategy targeting high-growth audience segments.",

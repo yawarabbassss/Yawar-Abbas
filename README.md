@@ -1,189 +1,175 @@
-# Yawar Abbas — SEO Specialist Portfolio Website
+# Yawar Abbas — SEO Specialist & Digital Growth Portfolio
 
-A premium, modern, highly interactive production-quality personal brand website for **Yawar Abbas**, an SEO Specialist based in Punjab, Pakistan.
+<div align="center">
 
-This website positions Yawar Abbas as a serious SEO professional who understands search engine optimization as a business-growth function rather than simply a rankings exercise.
+![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.3-black?style=for-the-badge&logo=framer)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
----
+**High-performance, cinematic, and conversion-optimized portfolio for Yawar Abbas — SEO Specialist & Digital Growth Strategist.**
 
-## 🚀 Technology Stack
+[🌐 Live Portfolio](https://yawarabbas.com) • [📅 Book a Strategy Call](https://calendly.com/yawar-abbas/seo-growth-strategy-call) • [📰 Bi-weekly Newsletter](https://www.linkedin.com/newsletters/the-search-visibility-playbook-7493743068144271361)
 
-- **Framework**: [Next.js 14+](https://nextjs.org/) (App Router, React 18, TypeScript)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with a curated brand palette:
-  - Deep Emerald Green (`#0F3D2E`): Dark section backgrounds, headings, contrast panels, footer
-  - Emerald Green (`#1DBF73`): Primary CTAs, highlights, hover states, icons
-  - Soft Mint (`#D1FAE5`): Highlight cards, tags, subtle accents
-  - Light Grey (`#F5F5F5`): Section backgrounds
-  - White (`#FFFFFF`): Primary page background
-- **Animation & Micro-interactions**: [Framer Motion](https://www.framer.com/motion/) & Tailwind CSS keyframe animations
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **SEO & Data**: Next.js Metadata API, JSON-LD Person & WebSite Schemas, `sitemap.ts`, `robots.ts`
+</div>
 
 ---
 
-## 📁 Project Architecture
+## 🚀 Overview
+
+This repository houses the modern, bespoke portfolio and web showcase for **Yawar Abbas**, an SEO Specialist and Digital Growth Strategist based in Punjab, Pakistan (operating globally for US & international clients).
+
+The website bridges **technical search engine optimization (SEO)** with **tangible revenue acquisition**, **topical authority architecture**, and **Generative Engine Optimization (GEO)** for AI-powered search engines.
+
+---
+
+## ✨ Key Features & Architecture
+
+### 1. 🎬 Cinematic Dark Preloader
+- High-FPS percentage rollup counter (`0% → 100%`) synchronized with a gradient progress bar.
+- Staggered letter-by-letter typographic entrance.
+- Smooth curtain-lift exit animation powered by Framer Motion.
+
+### 2. 📱 3D Interactive Hero Section
+- **3D Mouse Parallax Tilt:** The centerpiece mobile frame dynamically rotates in 3D space (`perspective: 1000px`) following mouse motion.
+- **Live Status Indicator:** Radar sonar animation indicating project availability.
+- **Floating Accent Cards:** Ambient floating quote and certification badges on continuous oscillating cycles.
+
+### 3. ♾️ Infinite Ticker Tech Marquee
+- Continuous smooth scrolling ribbon displaying core tools (*Ahrefs, Google Search Console, GA4, GEO, Schema Markup, Programmatic SEO*).
+- Interactive hover pause and glowing badge expansion.
+
+### 4. 🍱 Dark Bento Services Grid ("What I Build For You")
+- High-contrast deep indigo/violet container with numbered bento cards (`01` - `04`).
+- Interactive hover elevation, gradient glow borders, and step number zoom.
+- Dedicated Generative Engine Optimization (GEO) highlight banner.
+
+### 5. 🌐 Built Websites Showcase & SEO Case Studies
+Interactive tab switcher featuring production web builds and search architectures:
+- **[Nurah Initiative](https://nurahinitiative.com)** — Social impact & educational empowerment platform.
+- **[Himmatkaar](https://himmatkaar.netlify.app)** — Youth leadership and community organization hub.
+- **[Flafe](https://flafeoffcial.vercel.app)** — Modern brand & digital experience.
+- **[Areeka Haq](https://areeka.vercel.app)** — Official portfolio for top Pakistani influencer and actress Areeka Haq.
+- Plus detailed strategic SEO case breakdowns for SaaS, eCommerce, and B2B platforms.
+
+### 6. 🎁 Partner Perks & Exclusive Tool Discounts
+A curated directory of partner deals and referral discounts:
+- **Hostinger:** Cloud & WordPress hosting discount with code `YAWARABBAS`.
+- **RankyTools:** Group-buy SEO intelligence suite (Ahrefs, SEMrush, Moz).
+- **Bolt.new:** In-browser AI fullstack web generator.
+- **Lovable.dev:** Natural-language AI software development platform.
+- **Replit:** Cloud IDE and collaborative autonomous AI agent environment.
+
+### 7. ⏱️ 2026 Career & Work Experience Split Timeline
+- Structured timeline displaying 2026 roles across Himmatkaar, Saafify, Azm Pakistan, and Misaq (Contract Completed).
+- Impact metrics, key responsibilities, and skill chips.
+
+### 8. 📬 Direct Inquiry & Contact Form
+- **One-Click Copy Email:** Copy `yaawarabbass@gmail.com` with animated clipboard feedback.
+- **Direct Submission:** FormSubmit AJAX integration sending messages directly to `yaawarabbass@gmail.com` with mailto fallback.
+
+### 9. 🎨 Signature Footer
+- Magnetic circular *"Book Call ↗"* action button.
+- Massive typographic watermark signature branding.
+- Quick navigation, social hubs, and smooth back-to-top scrolling.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+| :--- | :--- |
+| **[Next.js 14](https://nextjs.org/)** | App Router, Server-Side Rendering & Static Generation |
+| **[TypeScript](https://www.typescriptlang.org/)** | Strict type safety and robust data structures |
+| **[Tailwind CSS](https://tailwindcss.com/)** | Utility-first responsive design & custom glassmorphism |
+| **[Framer Motion](https://www.framer.com/motion/)** | High-performance 60fps animations & scroll triggers |
+| **[Lucide React](https://lucide.dev/)** | Modern, lightweight icon suite |
+| **[PostCSS / Autoprefixer](https://postcss.org/)** | CSS vendor prefixing and bundling |
+
+---
+
+## 📁 Project Structure
 
 ```
-Yawar Abbas/
 ├── app/
-│   ├── globals.css         # Global Tailwind directives & custom CSS
-│   ├── layout.tsx          # Root layout with Google Fonts, metadata & JSON-LD
-│   ├── page.tsx            # Main portfolio single-page application
-│   ├── robots.ts           # Dynamic robots.txt generation
-│   └── sitemap.ts          # Dynamic sitemap.xml generation
+│   ├── globals.css          # Global styling, keyframes, and glassmorphic classes
+│   ├── layout.tsx           # SEO metadata, OpenGraph, JsonLd & Google Fonts
+│   ├── page.tsx             # Home page assembling all sections
+│   ├── robots.ts            # Dynamic robots.txt generation
+│   └── sitemap.ts           # Dynamic XML sitemap generation
 ├── components/
-│   ├── CanvasBackground.tsx# Interactive HTML5 Canvas fallback for hero background
-│   ├── Footer.tsx          # Deep Emerald contrast footer with social profiles & quick links
-│   ├── JsonLd.tsx          # Structured schema markup (Person & WebSite)
-│   ├── Navbar.tsx          # Glassmorphic sticky header with mobile drawer
+│   ├── Navbar.tsx           # Floating capsule glassmorphic navigation bar
+│   ├── Preloader.tsx        # Cinematic dark opening screen with live counter
+│   ├── TechMarquee.tsx      # Infinite horizontal tools ribbon
+│   ├── Footer.tsx           # Signature dark footer with watermark & socials
 │   ├── sections/
-│   │   ├── AboutSection.tsx      # Growth philosophy, 3-stage process & audience focus
-│   │   ├── ApproachSection.tsx   # 7-Step "How I Approach SEO" interactive journey
-│   │   ├── ContactSection.tsx    # Calendly booking CTA, Email, Socials & Inquiry form
-│   │   ├── ExperienceSection.tsx # Career history (Himmatkaar, Misaq, Saafify, Azm Pakistan)
-│   │   ├── ExpertiseSection.tsx  # Categorized skill matrix with interactive filter
-│   │   ├── HeroSection.tsx       # Dynamic video/canvas hero, headline & editorial frame
-│   │   ├── ServicesSection.tsx   # Categorized high-value SEO services matrix
-│   │   └── WorkSection.tsx       # Truthful case studies coming soon & preview architecture
+│   │   ├── HeroSection.tsx        # 3D interactive phone frame & greeting
+│   │   ├── AboutSection.tsx       # Core strengths, bio matrix & animated counters
+│   │   ├── ServicesSection.tsx    # Dark Bento grid ("What I build for you")
+│   │   ├── ExpertiseSection.tsx   # Categorized skills & tools ("My tech stack")
+│   │   ├── ExperienceSection.tsx  # 2026 work timeline & contract status
+│   │   ├── WorkSection.tsx        # Built websites & SEO case studies
+│   │   ├── AffiliatesSection.tsx  # Partner discounts & referral tools
+│   │   ├── ApproachSection.tsx    # 4-step strategic growth framework
+│   │   └── ContactSection.tsx     # Direct message form & social hub
 │   └── ui/
-│       ├── Badge.tsx       # Tag primitive component
-│       ├── Button.tsx      # Multi-variant CTA button primitive
-│       └── Card.tsx        # Card container primitive with hover effects
+│       ├── AnimatedCounter.tsx    # Scroll-triggered dynamic number rollups
+│       ├── MotionWrapper.tsx      # Declarative Framer Motion triggers
+│       ├── Badge.tsx              # Reusable pill badge
+│       ├── Button.tsx             # Standardized CTA button
+│       └── Card.tsx               # Glass & modern card container
 ├── data/
-│   ├── approach.ts         # 7-Step methodology content
-│   ├── experience.ts       # Factual career experience entries
-│   ├── expertise.ts        # Skills and competencies matrix
-│   ├── services.ts         # Service categories and descriptions
-│   └── siteData.ts         # Central site data, URLs, copy & metadata
-├── public/
-│   ├── images/
-│   │   └── yawar-abbas.svg # Editorial portrait photo placeholder
-│   └── media/
-│       └── hero-video.mp4  # Hero background video asset location
-├── types/
-│   └── index.ts            # TypeScript interfaces
-├── .env.example            # Environment variables example
-├── next.config.mjs         # Next.js configuration
-├── package.json            # Project dependencies & scripts
-├── postcss.config.js       # PostCSS configuration
-├── tailwind.config.ts      # Custom Tailwind theme setup
-└── tsconfig.json           # TypeScript configuration
+│   ├── siteData.ts          # Central configuration, URLs, built sites, & affiliates
+│   ├── experience.ts        # 2026 career roles & responsibilities
+│   ├── expertise.ts         # Technical SEO & GEO skill categories
+│   ├── services.ts          # Service blueprints & deliverables
+│   └── approach.ts          # 4-step methodology breakdown
+└── public/
+    └── images/              # Avatar, SVG assets, and icons
 ```
 
 ---
 
-## 💻 Local Development Setup
+## ⚡ Getting Started Locally
 
-### Prerequisites
-- Node.js 18.x or higher
-- npm 9.x or yarn / pnpm
+### 1. Clone the repository
+```bash
+git clone https://github.com/yawarabbassss/Yawar-Abbas.git
+cd Yawar-Abbas
+```
 
-### Installation
+### 2. Install dependencies
+```bash
+npm install
+```
 
-1. **Clone or navigate to project directory**:
-   ```bash
-   cd "c:\laragon\www\Yawar Abbas"
-   ```
+### 3. Start development server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Start the local development server**:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-4. **Build for Production**:
-   ```bash
-   npm run build
-   ```
-
-5. **Start Production Server**:
-   ```bash
-   npm run start
-   ```
+### 4. Build for production
+```bash
+npm run build
+npm run start
+```
 
 ---
 
-## 🎨 Content & Asset Replacement Guide
+## 🌐 Connect with Yawar Abbas
 
-All personal brand data, links, copy, and file paths are centralized in `data/siteData.ts` for zero-friction updates:
-
-### 1. Replace Profile Photo
-Place your high-resolution portrait photograph in:
-```
-/public/images/yawar-abbas.png (or .jpg / .webp)
-```
-Then update `data/siteData.ts`:
-```ts
-avatarUrl: "/images/yawar-abbas.png"
-```
-
-### 2. Replace Hero Background Video
-Place your subtle abstract motion video in:
-```
-/public/media/hero-video.mp4
-```
-*(If video is omitted or fails to load, the site automatically renders an ambient interactive Canvas data network background).*
-
-### 3. Update Calendly URL
-Update `data/siteData.ts`:
-```ts
-urls: {
-  calendly: "https://calendly.com/yaawarch/seo-growth-strategy-call",
-}
-```
-
-### 4. Update Email & Social Profiles
-Update `data/siteData.ts`:
-```ts
-personal: {
-  email: "yaawarabbass@gmail.com",
-},
-urls: {
-  linkedin: "https://linkedin.com/in/yawar-abbass",
-  instagram: "https://instagram.com/yawarabbassss",
-  facebook: "https://facebook.com/yawarabbassss",
-}
-```
-
-### 5. Attach Downloadable Resume / CV
-Place your PDF resume file in:
-```
-/public/yawar-abbas-cv.pdf
-```
-
-### 6. Update Services
-Edit `data/services.ts` to add, remove, or refine service offerings, categories, and descriptions.
-
-### 7. Add Future Case Studies
-Edit `data/siteData.ts` or add project records in `types/index.ts` to activate published case studies in `components/sections/WorkSection.tsx`.
+- **Strategy Call:** [Book on Calendly](https://calendly.com/yawar-abbas/seo-growth-strategy-call)
+- **LinkedIn:** [linkedin.com/in/yawar-abbass](https://linkedin.com/in/yawar-abbass)
+- **YouTube:** [@yawarabbas.official](https://www.youtube.com/@yawarabbas.official)
+- **Newsletter:** [The Search Visibility Playbook](https://www.linkedin.com/newsletters/the-search-visibility-playbook-7493743068144271361) (Bi-weekly)
+- **GitHub:** [github.com/yawarabassss](https://github.com/yawarabassss)
+- **Linktree:** [linktr.ee/yawarabbas](https://linktr.ee/yawarabbas)
+- **Email:** [yaawarabbass@gmail.com](mailto:yaawarabbass@gmail.com)
 
 ---
 
-## 🌐 Deploying to Vercel
+## 📄 License
 
-The repository is 100% Vercel ready:
-
-1. Push your repository to **GitHub**:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit of Yawar Abbas SEO Portfolio"
-   git remote add origin https://github.com/yawarabbassss/yawar-abbas.git
-   git push -u origin main
-   ```
-
-2. Log into [Vercel](https://vercel.com).
-3. Click **"Add New"** → **"Project"**.
-4. Import your GitHub repository `yawar-abbas`.
-5. Select framework preset: **Next.js**.
-6. Click **"Deploy"**. Vercel will automatically build and publish your site with SSL, global CDN distribution, and optimized asset delivery.
-
----
-
-## 🔒 License & Copyright
-© Yawar Abbas. All rights reserved. Professional Portfolio Site.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.

@@ -3,7 +3,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { SITE_DATA } from "@/data/siteData";
-import { ArrowUpRight, ArrowUp, Linkedin, Instagram, Facebook, MapPin } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowUp,
+  Linkedin,
+  Instagram,
+  Facebook,
+  Github,
+  Youtube,
+  Link as LinkIcon,
+  Newspaper,
+  Mail,
+  MapPin,
+  Sparkles
+} from "lucide-react";
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -24,7 +37,7 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Callout & Magnetic Circular Hire Button */}
+        {/* Top Callout & Circular Hire Button */}
         <div className="flex flex-col md:flex-row md:items-center justify-between pb-16 border-b border-white/10 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -40,7 +53,7 @@ export const Footer: React.FC = () => {
             </h2>
           </motion.div>
 
-          {/* Floating Magnetic Circular Hire Me Button with Spin Hover */}
+          {/* Floating Circular Hire Me Button */}
           <motion.a
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
@@ -50,15 +63,15 @@ export const Footer: React.FC = () => {
             className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 p-1 flex flex-col items-center justify-center text-center text-white shadow-[0_0_50px_rgba(99,102,241,0.5)] transition-all duration-300 group shrink-0"
           >
             <ArrowUpRight className="w-6 h-6 mb-1 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:rotate-45 transition-transform duration-300" />
-            <span className="text-xs font-bold uppercase tracking-wider">Hire me</span>
+            <span className="text-xs font-bold uppercase tracking-wider">Book Call</span>
           </motion.a>
         </div>
 
         {/* 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-16 border-b border-white/10 text-xs sm:text-sm">
           
-          {/* Col 1: Brand (5 cols) */}
-          <div className="lg:col-span-5 space-y-4">
+          {/* Col 1: Brand (4 cols) */}
+          <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-xs font-black text-white">
                 YA
@@ -71,6 +84,22 @@ export const Footer: React.FC = () => {
             <p className="text-gray-400 max-w-sm font-light leading-relaxed">
               {SITE_DATA.personal.title} — Building scalable organic search engines, topical authority clusters, and Generative Engine Optimization (GEO) blueprints.
             </p>
+
+            {/* Newsletter Callout */}
+            <div className="pt-2">
+              <a
+                href={SITE_DATA.urls.newsletter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-indigo-300 hover:text-white transition-all text-xs"
+              >
+                <Newspaper className="w-4 h-4 text-indigo-400" />
+                <span>The Search Visibility Playbook</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  Bi-weekly
+                </span>
+              </a>
+            </div>
           </div>
 
           {/* Col 2: Navigate (2 cols) */}
@@ -96,7 +125,7 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a href={`mailto:${SITE_DATA.personal.email}`} className="hover:text-white transition-colors truncate block">
+                <a href={`mailto:${SITE_DATA.personal.email}`} className="hover:text-white transition-colors truncate block font-medium">
                   {SITE_DATA.personal.email}
                 </a>
               </li>
@@ -111,19 +140,19 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-indigo-400 hover:text-indigo-300 font-bold"
                 >
-                  <span>Book Strategy Call</span>
+                  <span>Schedule Strategy Call</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Social (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
+          {/* Col 4: Social Channels & Hubs (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="text-[11px] uppercase font-bold tracking-widest text-indigo-400">
-              SOCIAL
+              CONNECT & HUBS
             </h4>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap gap-2.5">
               <motion.a
                 whileHover={{ y: -3 }}
                 href={SITE_DATA.urls.linkedin}
@@ -131,9 +160,35 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-white/5 hover:bg-indigo-600 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
+                title="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
               </motion.a>
+
+              <motion.a
+                whileHover={{ y: -3 }}
+                href={SITE_DATA.urls.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-red-600 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="YouTube"
+                title="YouTube Channel"
+              >
+                <Youtube className="w-4 h-4" />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ y: -3 }}
+                href={SITE_DATA.urls.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-gray-800 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="GitHub"
+                title="GitHub"
+              >
+                <Github className="w-4 h-4" />
+              </motion.a>
+
               <motion.a
                 whileHover={{ y: -3 }}
                 href={SITE_DATA.urls.instagram}
@@ -141,32 +196,31 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-white/5 hover:bg-pink-600 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
                 aria-label="Instagram"
+                title="Instagram"
               >
                 <Instagram className="w-4 h-4" />
               </motion.a>
+
               <motion.a
                 whileHover={{ y: -3 }}
-                href={SITE_DATA.urls.facebook}
+                href={SITE_DATA.urls.linktree}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-blue-600 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
-                aria-label="Facebook"
+                className="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Linktree"
+                title="Linktree All Links"
               >
-                <Facebook className="w-4 h-4" />
+                <LinkIcon className="w-4 h-4" />
               </motion.a>
             </div>
           </div>
 
         </div>
 
-        {/* Copyright & Back to Top */}
+        {/* Bottom Copyright & Back to Top (Line Removed) */}
         <div className="pt-8 pb-12 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
           <div>
             © {new Date().getFullYear()} {SITE_DATA.personal.name}. All rights reserved.
-          </div>
-
-          <div className="text-gray-400">
-            Built with Next.js, Tailwind CSS & Framer Motion
           </div>
 
           <motion.button

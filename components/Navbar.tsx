@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { SITE_DATA } from "@/data/siteData";
 import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
 
@@ -14,7 +13,7 @@ export const Navbar: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      const sections = ["hero", "about", "skills", "experience", "projects", "contact"];
+      const sections = ["hero", "about", "skills", "experience", "projects", "discounts", "contact"];
       const scrollPos = window.scrollY + 200;
 
       for (const section of sections) {
@@ -43,6 +42,7 @@ export const Navbar: React.FC = () => {
   const rightNav = [
     { label: "Experience", href: "#experience", id: "experience" },
     { label: "Projects", href: "#projects", id: "projects" },
+    { label: "Discounts", href: "#discounts", id: "discounts" },
     { label: "Contact", href: "#contact", id: "contact" },
   ];
 

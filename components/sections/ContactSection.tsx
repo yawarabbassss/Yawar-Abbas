@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { SITE_DATA } from "@/data/siteData";
 import {
   Mail,
@@ -9,7 +9,10 @@ import {
   Check,
   Linkedin,
   Instagram,
-  Facebook,
+  Youtube,
+  Github,
+  Link as LinkIcon,
+  Newspaper,
   MapPin,
   Send,
   Loader2,
@@ -79,7 +82,7 @@ export const ContactSection: React.FC = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           
-          {/* Left Column: High Impact Direct Contact Card with Scroll Entrance */}
+          {/* Left Column: High Impact Direct Contact Card */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -103,7 +106,7 @@ export const ContactSection: React.FC = () => {
                 {/* Tag */}
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-indigo-300 text-[11px] font-bold uppercase tracking-wider mb-6">
                   <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-                  <span>Contact</span>
+                  <span>Contact & Socials</span>
                 </div>
 
                 {/* Main Headline */}
@@ -112,7 +115,7 @@ export const ContactSection: React.FC = () => {
                   <span className="text-indigo-400 italic font-serif">Let's talk.</span>
                 </h2>
 
-                <p className="text-xs sm:text-sm text-gray-300 font-light leading-relaxed mb-8">
+                <p className="text-xs sm:text-sm text-gray-300 font-light leading-relaxed mb-6">
                   Whether it's an end-to-end SEO growth roadmap, a technical crawl audit, or a custom Generative Engine Optimization (GEO) blueprint — send a message and I'll get back to you within 24 hours.
                 </p>
 
@@ -154,7 +157,7 @@ export const ContactSection: React.FC = () => {
                     href={SITE_DATA.urls.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
+                    className="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
                   >
                     <div className="flex items-center gap-2.5 text-xs font-medium text-gray-300 group-hover:text-white">
                       <Linkedin className="w-4 h-4 text-indigo-400" />
@@ -165,14 +168,56 @@ export const ContactSection: React.FC = () => {
 
                   <motion.a
                     whileHover={{ x: 4 }}
-                    href={SITE_DATA.urls.instagram}
+                    href={SITE_DATA.urls.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
+                    className="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
                   >
                     <div className="flex items-center gap-2.5 text-xs font-medium text-gray-300 group-hover:text-white">
-                      <Instagram className="w-4 h-4 text-pink-400" />
-                      <span>Instagram / yawarabbassss</span>
+                      <Youtube className="w-4 h-4 text-red-400" />
+                      <span>YouTube / @yawarabbas.official</span>
+                    </div>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </motion.a>
+
+                  <motion.a
+                    whileHover={{ x: 4 }}
+                    href={SITE_DATA.urls.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
+                  >
+                    <div className="flex items-center gap-2.5 text-xs font-medium text-gray-300 group-hover:text-white">
+                      <Github className="w-4 h-4 text-gray-300" />
+                      <span>GitHub / yawarabassss</span>
+                    </div>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </motion.a>
+
+                  <motion.a
+                    whileHover={{ x: 4 }}
+                    href={SITE_DATA.urls.newsletter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
+                  >
+                    <div className="flex items-center gap-2.5 text-xs font-medium text-gray-300 group-hover:text-white">
+                      <Newspaper className="w-4 h-4 text-indigo-400" />
+                      <span>Newsletter (Bi-weekly)</span>
+                    </div>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </motion.a>
+
+                  <motion.a
+                    whileHover={{ x: 4 }}
+                    href={SITE_DATA.urls.linktree}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
+                  >
+                    <div className="flex items-center gap-2.5 text-xs font-medium text-gray-300 group-hover:text-white">
+                      <LinkIcon className="w-4 h-4 text-emerald-400" />
+                      <span>Linktree / yawarabbas</span>
                     </div>
                     <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </motion.a>
@@ -188,7 +233,7 @@ export const ContactSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Clean Contact Form Card with Scroll Entrance */}
+          {/* Right Column: Clean Contact Form Card */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -202,7 +247,7 @@ export const ContactSection: React.FC = () => {
                   Send a message
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-500 mb-8">
-                  Fill in the details below and I'll review your website and growth targets.
+                  Messages are sent directly to <span className="font-semibold text-gray-900">{SITE_DATA.personal.email}</span>.
                 </p>
 
                 {!formSubmitted ? (

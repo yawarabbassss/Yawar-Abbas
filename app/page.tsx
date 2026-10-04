@@ -10,6 +10,7 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ExpertiseSection } from "@/components/sections/ExpertiseSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { WorkSection } from "@/components/sections/WorkSection";
+import { AffiliatesSection } from "@/components/sections/AffiliatesSection";
 import { ApproachSection } from "@/components/sections/ApproachSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -45,8 +46,11 @@ export default function Home() {
         {/* Work Experience Split Timeline */}
         <ExperienceSection />
 
-        {/* Selected Projects & Live Case Studies */}
+        {/* Selected Projects & Live Built Websites (Nurah, Himmatkaar, Flafe, Areeka Haq) */}
         <WorkSection />
+
+        {/* Partner Deals & Exclusive Tool Discounts (Hostinger, RankyTools, Bolt, Lovable, Replit) */}
+        <AffiliatesSection />
 
         {/* Learning & Credentials / 4-Step Methodology */}
         <ApproachSection />

@@ -9,6 +9,7 @@ export interface ExperienceItem {
   company: string;
   location?: string;
   period?: string;
+  status?: string;
   type: string; // e.g. "Full-time", "Contract", "Leadership"
   description: string;
   keyResponsibilities: string[];

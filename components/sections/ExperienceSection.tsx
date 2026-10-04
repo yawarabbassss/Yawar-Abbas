@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { EXPERIENCES } from "@/data/experience";
-import { Calendar, MapPin, CheckCircle2 } from "lucide-react";
+import { Calendar, MapPin, CheckCircle2, Award } from "lucide-react";
 
 export const ExperienceSection: React.FC = () => {
   return (
@@ -20,7 +20,7 @@ export const ExperienceSection: React.FC = () => {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse" />
-              Career
+              Career & Experience
             </div>
             <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-gray-950 tracking-tight">
               Work experience
@@ -38,7 +38,7 @@ export const ExperienceSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Split Timeline List with Scroll Triggers */}
+        {/* Split Timeline List */}
         <div className="space-y-12 relative">
           {EXPERIENCES.map((exp, idx) => (
             <motion.div
@@ -52,9 +52,23 @@ export const ExperienceSection: React.FC = () => {
             >
               {/* Left Column: Company & Dates */}
               <div className="lg:col-span-4 space-y-3">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-100/80 text-indigo-900 text-xs font-bold">
-                  <Calendar className="w-3.5 h-3.5 text-indigo-600" />
-                  <span>2024 — Present</span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-100/80 text-indigo-900 text-xs font-bold">
+                    <Calendar className="w-3.5 h-3.5 text-indigo-600" />
+                    <span>2026</span>
+                  </div>
+
+                  {exp.status && (
+                    <span
+                      className={`text-[11px] font-bold px-2.5 py-1 rounded-full border ${
+                        exp.id === "misaq"
+                          ? "bg-amber-50 text-amber-800 border-amber-200"
+                          : "bg-emerald-50 text-emerald-800 border-emerald-200"
+                      }`}
+                    >
+                      {exp.status}
+                    </span>
+                  )}
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-heading font-black text-gray-950 tracking-tight">

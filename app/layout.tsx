@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SITE_DATA } from "@/data/siteData";
 import { JsonLd } from "@/components/JsonLd";
@@ -14,13 +14,6 @@ const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-  style: ["normal", "italic"],
 });
 
 export const viewport: Viewport = {
@@ -98,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${plusJakarta.variable} ${playfair.variable}`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${plusJakarta.variable}`}>
       <head>
         <JsonLd />
       </head>
